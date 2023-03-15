@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <NavBar placeholder="Search any movie or Tv show">
-        <div className='flex'>
+        <div className=''>
           {/* <Sidebar /> */}
           <AppRoutes />
         </div>

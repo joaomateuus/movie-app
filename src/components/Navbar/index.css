@@ -1,0 +1,64 @@
+#input-div input{
+    margin-left: 2vw;
+    width: 40vw;
+}
+
+
+@media (min-width: 0px) and (max-width: 480px){
+    #navbar-container{
+        display: flex;
+        flex-direction: column;
+        height: 30%;
+        padding: 8px;
+    }
+
+    #logo img{
+        height: 12vh;
+        width: 25vw;
+        margin-bottom: 2vh;
+        border: 1px solid white
+    }
+
+    #input-div input{
+        width: 70vw;
+        margin-bottom: 2vh;
+    }
+
+    #nav-links{
+        width: 80%;
+    }
+
+    #user-icon{
+        height: 5vh;
+    }
+
+}
+
+@media (min-width: 481px) and (max-width: 960px){
+    #navbar-container{
+        display: flex;
+        height: 30%;
+    }
+
+    #logo img{
+        height: 10vh;
+        width: 15vw;
+        margin-bottom: 2vh;
+    }
+    
+    #input-div input{
+        margin-top: 2vh;
+        width: 40vw;
+        margin-bottom: 2vh;
+    }
+
+    #nav-links{
+        width: 35%;
+    }
+
+    #user-icon{
+        height: 3vh;
+    }
+
+
+}

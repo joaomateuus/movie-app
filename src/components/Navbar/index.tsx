@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from "../../assets/logo.png";
 import user_icon from "../../assets/user_icon.png"
+import "./index.css";
 
 interface NavBarProps{
   children: React.ReactNode
@@ -10,25 +11,27 @@ interface NavBarProps{
 export const NavBar = ({children, placeholder}: NavBarProps) => {
   return (
     <>
-      <div className='flex items-center justify-between h-32 w-screen bg-black p-4'>
-        <div>
-          <img className='h-28 w-36' src={logo} alt="" />
-        </div>
-        
-        <div>
-          <input placeholder={placeholder} className='h-8 w-96 rounded-md outline-none p-4' type="text" />
+      <div className='flex items-center justify-between h-36 w-screen bg-black p-4' id='navbar-container'>
+        <div id='logo'>
+          <img className='h-24 w-32' src={logo} alt="" />
         </div>
 
-        <ul className='flex items-center justify-between w-96 text-white'>
+        <div id='input-div'>
+          <input placeholder={placeholder} className='h-12 rounded-md outline-none p-4' type="text" />
+        </div>
+
+        <ul className='flex items-center justify-between w-96 text-white' id='nav-links'>
           <li className=''>Movies</li>
           <li>Series</li>
           <li>Watch List</li>
           <li>
-            <img className='h-12' src={user_icon} alt="" />
+            <img className='h-12' src={user_icon} alt="" id='user-icon' />
           </li>
         </ul>
       </div>
-      {children}
+      <div className='flex items-center justify-center p-6'>
+        {children}
+      </div>
     </>
   )
 }
