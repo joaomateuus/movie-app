@@ -1,0 +1,10 @@
+.wrapper{
+    height: 30vw;
+    width: 95vw;
+    background-color: black;
+    margin-bottom: 5vh;
+}
+
+#home-wrapper{
+    background: #6E171B;
+}

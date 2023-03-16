@@ -1,5 +1,4 @@
 #input-div input{
-    margin-left: 2vw;
     width: 40vw;
 }
 
@@ -16,7 +15,6 @@
         height: 12vh;
         width: 25vw;
         margin-bottom: 2vh;
-        border: 1px solid white
     }
 
     #input-div input{

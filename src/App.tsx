@@ -5,14 +5,10 @@ import { AppRoutes } from './routes';
 
 function App() {
   return (
-    <>
-      <NavBar placeholder="Search any movie or Tv show">
-        <div className=''>
-          {/* <Sidebar /> */}
-          <AppRoutes />
-        </div>
-      </NavBar>
-    </>
+    <div className='flex flex-col items-center justify-center'>
+      <NavBar placeholder="Search any movie or Tv show" />
+      <AppRoutes />
+    </div>
   )
 }
 
