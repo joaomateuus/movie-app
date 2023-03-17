@@ -8,11 +8,13 @@ import './index.css'
 export const Carrousel = () => {
     const [activeImage, setActiveImage] = useState(0);
 
-    // useEffect(() => {
-    //     setInterval (()=>{
-    //         gettingNext(activeImage);
-    //     }, 10000);
-    // });
+    useEffect(() => {
+        const keepPassing = setInterval (()=>{
+            gettingNext(activeImage);
+        }, 7000, () => {
+            clearInterval(keepPassing)
+        });
+    }, [activeImage]);
 
     const traillers = [
         {id: 1, name: 'Wakanda Forever', img: wakanda, genre: 'Action'},
@@ -32,27 +34,32 @@ export const Carrousel = () => {
 
     return (
         <>
-            <div className='carrousel border-2 border-white'>
-                <div className="inner" style={{transform: `translate(-${activeImage * 100}%)`}}>
-                    {traillers.map((movie, index)=> {
-                        return (
-                                <CarrouselItem key={index} movies={movie}>
-                                    <div className="carrousel-description">
-                                        <h1 className="text-2xl text-green-300">Ola TRailer</h1>
-                                    </div>
-
-                                </CarrouselItem>
-                            )
-                    })}
-                </div>
+            <div className='flex items-center justify-center'>
                 <div className="carrousel-buttons">
                     <button onClick={() => gettingPrev(activeImage)} className="button-arrow">
                         <span className="material-symbols-outlined">arrow_back</span>
                     </button>
+                </div>
+                <div className="carrousel" style={{backgroundImage: `url(${traillers[activeImage].img})`}} />
+                <div className="carrousel-buttons">
                     <button onClick={() => gettingNext(activeImage)} className="button-arrow">
                         <span className="material-symbols-outlined">arrow_forward</span>
                     </button>
                 </div>
+               
+                
+                {/* <div className="inner" style={{transform: `translate(-${activeImage * 100}%)`}}>
+                    {traillers.map((movie, index)=> {
+                        return (
+                            <CarrouselItem key={index} movies={movie}>
+                                <div className="carrousel-description">
+                                    <h1 className="text-2xl text-green-300">Ola TRailer</h1>
+                                </div>
+                            </CarrouselItem>
+                        )
+                    })}
+                </div> */}
+                
             </div>
         </>
     )   

@@ -1,4 +1,51 @@
 .carrousel{
+    height: 55vh;
+    width: 70vw;
+    border-radius: 5px;
+    background-size: cover;
+    background-position: center;
+    transition: 2s ease-in-out;
+}
+
+@media (min-width: 0px) and (max-width: 480px){
+    .carrousel{
+        height: 25vh;
+        width: 80vw;
+        border-radius: 5px;
+        background-size: cover;
+        background-position: center;
+    }
+
+
+}
+
+.button-arrow{
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.carrousel-buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.inner {
+    position: relative;
+    overflow: hidden;
+    height: 80vh;
+    width: 50vw;
+    white-space: nowrap;
+    transition: transform 0.3s;
+}
+
+/* 
+     width: 900px;
+    height: 400px;
+*/
+
+/* .carrousel{
     width: 50vw;
     overflow: hidden;
 }
@@ -7,29 +54,16 @@
     display: flex;
     transition: transform 0.5s ease;
 }
+ */
 
 
-
-/* .carrousel{
-    display: flex;
-    justify-content: center;
-    /* overflow: hidden;
-    width: 80vw;
+/* 
     display: flex;
     flex-direction: column;
     justify-content: center; 
 */
 
-/* .inner{
-    position: relative;
-    width: 900px;
-    height: 400px;
-    overflow: hidden;
-    /* display: inline-block;
-    white-space: nowrap;
-    transition: transform 0.3s;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); 
-*/
+
 
 /* .carrousel-item{
     height: 50vh;
@@ -39,14 +73,6 @@
 */
 
 /* 
-.carrousel-buttons{
-    display: flex;
-    justify-content: space-evenly;
-}
 
-.button-arrow{
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-} */
+
+ */

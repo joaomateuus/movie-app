@@ -10,7 +10,7 @@ interface NavBarProps {
 
 export const NavBar = ({placeholder}: NavBarProps) => {
   return (
-    <div className='flex items-center justify-between h-36 w-full bg-black p-8' id='navbar-container'>
+    <div className='flex items-center justify-between h-42 w-full bg-black p-8' id='navbar-container'>
       <div id='logo'>
         <img className='h-24 w-32' src={logo} alt="" />
       </div>
