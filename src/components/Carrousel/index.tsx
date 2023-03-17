@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import wakanda from "../../assets/traillers/wakanda.jpg";
+import wakanda from "../../assets/traillers/wakanda.webp";
 import panico from "../../assets/traillers/panico.jpg"
 import john_wick from "../../assets/traillers/john_wick.jpg"
 import { CarrouselItem } from "./CarrouselItem";
@@ -32,7 +32,7 @@ export const Carrousel = () => {
 
     return (
         <>
-            <div className='carrousel'>
+            <div className='carrousel border-2 border-white'>
                 <div className="inner" style={{transform: `translate(-${activeImage * 100}%)`}}>
                     {traillers.map((movie, index)=> {
                         return (
