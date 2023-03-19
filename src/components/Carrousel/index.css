@@ -1,6 +1,12 @@
 .carrousel{
+    /* opacity: 0.5; */
+    /* padding: 20px; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     height: 55vh;
-    width: 70vw;
+    width: 60vw;
     border-radius: 5px;
     background-size: cover;
     background-position: center;

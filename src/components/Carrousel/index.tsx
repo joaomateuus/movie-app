@@ -1,20 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import wakanda from "../../assets/traillers/wakanda.webp";
-import panico from "../../assets/traillers/panico.jpg"
-import john_wick from "../../assets/traillers/john_wick.jpg"
-import { CarrouselItem } from "./CarrouselItem";
+import panico from "../../assets/traillers/panico.jpg";
+import john_wick from "../../assets/traillers/john_wick.jpg";
 import './index.css'
 
-export const Carrousel = () => {
-    const [activeImage, setActiveImage] = useState(0);
+// interface CarrouselProps{
+//     children: React.ReactNode;
+// }; 
 
-    useEffect(() => {
-        const keepPassing = setInterval (()=>{
-            gettingNext(activeImage);
-        }, 7000, () => {
-            clearInterval(keepPassing)
-        });
-    }, [activeImage]);
+export const Carrousel = () => {
+    const timerRef = useRef(0);
+    const [activeImage, setActiveImage] = useState(0);
 
     const traillers = [
         {id: 1, name: 'Wakanda Forever', img: wakanda, genre: 'Action'},
@@ -27,10 +23,20 @@ export const Carrousel = () => {
         setActiveImage(index);
     };
 
-    const gettingNext = (currentImage: number) => {
+    const gettingNext = useCallback((currentImage: number) => {
         const index = currentImage < traillers.length - 1 ? currentImage + 1 : 0;
         setActiveImage(index);
-    };
+    }, [activeImage, traillers]);
+
+    useEffect(() => {
+        if(timerRef.current){
+            clearTimeout(timerRef.current);
+        } 
+        timerRef.current = setTimeout(() => {
+            gettingNext(activeImage);
+        }, 5000);
+        return () => clearTimeout(timerRef.current);
+    }, [gettingNext]);
 
     return (
         <>
@@ -46,20 +52,19 @@ export const Carrousel = () => {
                         <span className="material-symbols-outlined">arrow_forward</span>
                     </button>
                 </div>
-               
-                
-                {/* <div className="inner" style={{transform: `translate(-${activeImage * 100}%)`}}>
-                    {traillers.map((movie, index)=> {
-                        return (
-                            <CarrouselItem key={index} movies={movie}>
-                                <div className="carrousel-description">
-                                    <h1 className="text-2xl text-green-300">Ola TRailer</h1>
-                                </div>
-                            </CarrouselItem>
-                        )
-                    })}
-                </div> */}
-                
+                {/*
+                    <div className="inner" style={{transform: `translate(-${activeImage * 100}%)`}}>
+                        {traillers.map((movie, index)=> {
+                            return (
+                                <CarrouselItem key={index} movies={movie}>
+                                    <div className="carrousel-description">
+                                        <h1 className="text-2xl text-green-300">Ola TRailer</h1>
+                                    </div>
+                                </CarrouselItem>
+                            )
+                        })}
+                    </div> 
+                */}
             </div>
         </>
     )   

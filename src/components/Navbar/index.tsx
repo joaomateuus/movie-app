@@ -4,7 +4,6 @@ import user_icon from "../../assets/user_icon.png";
 import "./index.css";
 
 interface NavBarProps {
-  // children: React.ReactNode;
   placeholder: string;
 };
 
