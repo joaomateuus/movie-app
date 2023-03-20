@@ -29,12 +29,12 @@ export const Carrousel = () => {
     }, [activeImage, traillers]);
 
     useEffect(() => {
-        if(timerRef.current){
+        if(timerRef.current !== 0){
             clearTimeout(timerRef.current);
         } 
         timerRef.current = setTimeout(() => {
             gettingNext(activeImage);
-        }, 5000);
+        }, 8000);
         return () => clearTimeout(timerRef.current);
     }, [gettingNext]);
 
@@ -52,19 +52,6 @@ export const Carrousel = () => {
                         <span className="material-symbols-outlined">arrow_forward</span>
                     </button>
                 </div>
-                {/*
-                    <div className="inner" style={{transform: `translate(-${activeImage * 100}%)`}}>
-                        {traillers.map((movie, index)=> {
-                            return (
-                                <CarrouselItem key={index} movies={movie}>
-                                    <div className="carrousel-description">
-                                        <h1 className="text-2xl text-green-300">Ola TRailer</h1>
-                                    </div>
-                                </CarrouselItem>
-                            )
-                        })}
-                    </div> 
-                */}
             </div>
         </>
     )   

@@ -8,10 +8,9 @@ import './index.css';
           <Carrousel />
         </div>
         <div className='flex flex-col items-center justify-center bg-blue-800 h-screen w-full'>
-          <h1>OLA</h1>
-          <h1>OLA</h1>
-          <h1>OLA</h1>
-          <h1>OLA</h1>            
+          <div className='grid grid-cols-3 gap-4'>
+           
+          </div> 
         </div>
         <div className='flex flex-col items-center justify-center w-full h-screen'>
           
