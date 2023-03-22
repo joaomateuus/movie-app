@@ -8,3 +8,8 @@
 #home-wrapper{
     background: #6E171B;
 }
+
+.first-carrouse{
+    margin-bottom: 2vh;
+    overflow-x: hidden;
+}
