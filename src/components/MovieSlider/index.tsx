@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import Slider from "react-slick";
 
 import { MovieSliderItem } from "./MovieSliderItem/index"
 import "./index.scss";
@@ -16,64 +17,62 @@ interface MovieSliderProps {
 }
 
 export const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
-  const [slideIndex, setSlideIndex] = useState(0);
-  const handleNextSlide = () => {
-    const index = slideIndex < movies.length - 1 ? slideIndex + 1:  0
-    console.log(slideIndex);
-    setSlideIndex(index);
-};
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handlePrevSlide = () => {
-    return slideIndex > 0 ?  setSlideIndex(slideIndex - 1) : setSlideIndex(movies.length - 1)
-  };
+    const handlePrevSlide = () => {
+        console.log(currentIndex)
+        return currentIndex > 0 ? setCurrentIndex(currentIndex - 1) : setCurrentIndex(movies.length - 1) 
+    }
 
-  return (
-    <>
-        {/* <div className="list">
-            <span className="listTitle">Continue to watch</span>
-            <div className="wrapper">
-                <button onClick={() => handlePrevSlide()} className="sliderArrow left">
-                    <span className="material-symbols-outlined">arrow_back</span>
-                </button>
-                <div className="container">
-                    <MovieSliderItem />
-                    <MovieSliderItem />
-                    <MovieSliderItem />
-                    <MovieSliderItem />
-                    <MovieSliderItem />
-                    <MovieSliderItem />
-                    <MovieSliderItem />
-                    <MovieSliderItem />
-                </div>
-                <button onClick={() => handleNextSlide()}   className="sliderArrow right">
-                    <span className="material-symbols-outlined">arrow_forward</span>
-                </button>
-            </div>
-        </div> */}
-        {/* <div className="movie-slider-container">
-            <button onClick={handlePrevSlide}>
+    const handleNextSlide = () => {
+        console.log(currentIndex)
+        return currentIndex < movies.length - 1 ? setCurrentIndex(currentIndex + 1) : setCurrentIndex(0) 
+    }
+
+
+    return (
+        <div className="slider">
+            <button className="arrow-left" onClick={handlePrevSlide}>
                 <span className="material-symbols-outlined">arrow_back</span>
             </button>
-            <div className="movie-slider">
-                <div
-                className="movie-slider-wrapper"
-                >
-                {movies.map((movie) => (
-                    <div className="movie-card" key={movie.id}>
-                    <div className="movie-card-img">
-                        <img src={movie.img} alt={movie.title} className="h-32" />
-                    </div>
-                    <div className="movie-card-info">
-                        <h3>{movie.title}</h3>
-                    </div>
-                    </div>
-                ))}
+            <div className="slider-container">
+                <div className="slider-item" style={{ transform: `translateX(-${currentIndex * 20.5}%)` }}>
+                    {movies.map((movie, index) => {
+                        return(
+                            <img src={movie.img} key={index} alt="" />
+                        )
+                    })}
                 </div>
             </div>
-            <button onClick={handleNextSlide} className="ml-4">
+            <button className="arrow-right" onClick={handleNextSlide}>
                 <span className="material-symbols-outlined">arrow_forward</span>
             </button>
-        </div> */}
-    </>
-  );
-};
+        </div>
+        // <div className="slider">
+        //     <button className="">
+        //         <span className="material-symbols-outlined">arrow_back</span>
+        //     </button>
+        //     <div className="slider-items">
+        //         {movies.map((movie, index) => {
+        //             return(
+        //                 <div className="slider-item">
+        //                     <img src={movie.img} alt="" />
+        //                 </div>
+        //             )
+        //         })}
+        //     </div>
+        //     <button className="">
+        //         <span className="material-symbols-outlined">arrow_forward</span>
+        //     </button>
+        // </div>
+    //   <div className="NetflixSlider">
+    //     <div className="NetflixSlider-controls">
+    //       <button onClick={handlePrev}>Prev</button>
+    //       <button onClick={handleNext}>Next</button>
+    //     </div>
+    //     <div className="NetflixSlider-items">{renderItems()}</div>
+    //   </div>
+    );
+  };
+  
+
