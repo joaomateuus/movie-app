@@ -1,45 +1,45 @@
-import React, { useRef, useState, useEffect } from "react";
 import "./index.scss";
 import { Trending } from "../../types/Trending";
+import { Swiper, SwiperSlide, SwiperProps } from "swiper/react";
+import { Navigation, Pagination } from "swiper";
+import "swiper/css";
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 interface MovieSliderProps {
     title: string;
+    settings: SwiperProps;
     trendingMovies: Array<Trending>;
-}
+};
 
-export const MovieSlider: React.FC<MovieSliderProps> = ({ trendingMovies, title }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    const handlePrevSlide = () => {
-        return currentIndex > 0 ? setCurrentIndex(currentIndex - 1) : setCurrentIndex(trendingMovies.length - 1) 
-    }
-
-    const handleNextSlide = () => {
-        return currentIndex < trendingMovies.length - 1 ? setCurrentIndex(currentIndex + 1) : setCurrentIndex(0) 
-    }
-
+export const MovieSlider: React.FC<MovieSliderProps> = ({ title, trendingMovies, settings}) => {
     return (
-        <div className="flex flex-col items-start justify-center">
+        <div className="flex-col items-center justify-center trending-movies ml-12 p-6">
             <h1 className='text-2xl text-white mb-4'>{title}</h1>
-            <div className="slider">
-                <button className="h-8 bg-white rounded-lg" onClick={handlePrevSlide}>
-                    <span className="material-symbols-outlined">arrow_back</span>
-                </button>
-                <div className="slider-container">
-                    <div className="slider-item" style={{ transform: `translateX(-${currentIndex * 6.5}%)` }}>
+            <div className="swiper-container">
+                <div className="swiper-wrapper">
+                    <Swiper modules={[Navigation, Pagination]} {...settings}>
                         {trendingMovies.map((movie, index) => {
-                            return(
-                                <img src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} key={index} alt="" />
+                            return (
+                                <SwiperSlide key={index}>
+                                    <div className="swiper-movie-poster">
+                                        <img src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
+                                        <div className="overlay text-white">
+                                            <div className="flex-col items-start justify-between p-6 h-full">
+                                                <h2 className="text-xl text-white text-bold mb-4">{movie.title}</h2>
+                                                <p className="text-justify text-sm text-bold mb-4">{movie.overview}</p>
+                                                <button className="h-8 w-32 rounded-md bg-white text-black">Read more</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
                             )
                         })}
-                    </div>
+                     </Swiper>
                 </div>
-                <button className="h-8 bg-white rounded-full" onClick={handleNextSlide}>
-                    <span className="material-symbols-outlined">arrow_forward</span>
-                </button>
             </div>
         </div>
     );
-  };
+};
   
 
