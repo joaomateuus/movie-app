@@ -10,12 +10,19 @@ interface MovieSliderProps {
     title: string;
     settings: SwiperProps;
     trendingMovies: Array<Trending>;
+    redirectUrl?: string;
 };
 
-export const MovieSlider: React.FC<MovieSliderProps> = ({ title, trendingMovies, settings}) => {
+export const MovieSlider: React.FC<MovieSliderProps> = ({ title, trendingMovies, settings, redirectUrl}) => {
     return (
         <div className="flex-col items-center justify-center trending-movies ml-12 p-6">
-            <h1 className='text-2xl text-white mb-4'>{title}</h1>
+            <div className="flex items-center justify-between w-full p-4">
+                <h1 className='text-2xl text-white mb-4'>{title}</h1>
+                {redirectUrl ? 
+                    <button className="h-8 w-32 bg-white rounded-md">Read More</button>
+                    : null
+                }
+            </div>
             <div className="swiper-container">
                 <div className="swiper-wrapper">
                     <Swiper modules={[Navigation, Pagination]} {...settings}>
@@ -26,7 +33,7 @@ export const MovieSlider: React.FC<MovieSliderProps> = ({ title, trendingMovies,
                                         <img src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
                                         <div className="overlay text-white">
                                             <div className="flex-col items-start justify-between p-6 h-full">
-                                                <h2 className="text-xl text-white text-bold mb-4">{movie.title}</h2>
+                                                <h2 className="text-xl text-white text-bold mb-4">{movie?.title ?? movie.original_title}</h2>
                                                 <p className="text-justify text-sm text-bold mb-4">{movie.overview}</p>
                                                 <button className="h-8 w-32 rounded-md bg-white text-black">Read more</button>
                                             </div>
