@@ -1,5 +1,5 @@
 import "./index.scss";
-import { Trending } from "../../types/Trending";
+import { MovieModelBase } from "../../types/Trending";
 import { Swiper, SwiperSlide, SwiperProps } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import "swiper/css";
@@ -9,11 +9,11 @@ import 'swiper/css/pagination';
 interface MovieSliderProps {
     title: string;
     settings: SwiperProps;
-    trendingMovies: Array<Trending>;
+    movies: Array<MovieModelBase>;
     redirectUrl?: string;
 };
 
-export const MovieSlider: React.FC<MovieSliderProps> = ({ title, trendingMovies, settings, redirectUrl}) => {
+export const MovieSlider: React.FC<MovieSliderProps> = ({ title, movies, settings, redirectUrl}) => {
     return (
         <div className="flex-col items-center justify-center trending-movies ml-12 p-6">
             <div className="flex items-center justify-between w-full p-4">
@@ -26,7 +26,7 @@ export const MovieSlider: React.FC<MovieSliderProps> = ({ title, trendingMovies,
             <div className="swiper-container">
                 <div className="swiper-wrapper">
                     <Swiper modules={[Navigation, Pagination]} {...settings}>
-                        {trendingMovies.map((movie, index) => {
+                        {movies.map((movie, index) => {
                             return (
                                 <SwiperSlide key={index}>
                                     <div className="swiper-movie-poster">

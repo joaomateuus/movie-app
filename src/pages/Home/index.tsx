@@ -2,38 +2,52 @@ import { useEffect, useState } from 'react';
 import { Carrousel } from '../../components/Carrousel';
 import { MovieSlider } from '../../components/MovieSlider';
 import { swiperSettings } from '../../config/swiper';
-import { TrendingService } from '../../services/TrendindService';
-import { TrendingResponse } from '../../types/Trending';
+import { TrendingService, popularMoviesService, popularSeriesService } from '../../services/TrendindService';
+import { MovieDbApiResponse } from '../../types/Trending';
 import './index.css';
 
 export const Home = () => {
-  const [trendingResponse, setTrendingResponse] = useState<TrendingResponse>();
+  const [trendingResponse, setTrendingResponse] = useState<MovieDbApiResponse>();
+  const [popularMoviesResponse, setpopularMoviesResponse] = useState<MovieDbApiResponse>();
+  const [popularSeriesResponse, setPopularSeriesResponse] = useState<MovieDbApiResponse>();
+  
+  useEffect(() => {
+    async function fetchTrending() {
+      const fetchTrendingResponse = await TrendingService();
+      setTrendingResponse(fetchTrendingResponse);
+    }
+    async function fetchPopularMovies() {
+      const fetchPopularMoviesResponse = await popularMoviesService();
+      setpopularMoviesResponse(fetchPopularMoviesResponse);
+    }
+    async function fetchPopularSeries() {
+      const fetchPopularMoviesResponse = await popularSeriesService();
+      setPopularSeriesResponse(fetchPopularMoviesResponse);
+    }
+    fetchTrending();
+    fetchPopularMovies();
+    fetchPopularSeries();
+  }, []);
   
   const TrendingSliderProps = {
     title: "Trending",
     settings: swiperSettings,
-    trendingMovies: trendingResponse?.results ?? []
+    movies: trendingResponse?.results ?? []
   };
 
   const MovieSliderProps = {
-    title: "Movie",
+    title: "Popular Movies",
     settings: swiperSettings,
-    trendingMovies: trendingResponse?.results ?? []
+    movies: popularMoviesResponse?.results.splice(0, 9) ?? [],
+    redirectUrl: "localhost:3000"
   };
 
   const SeriesSliderProps = {
-    title: "Series",
+    title: "Popular Series",
     settings: swiperSettings,
-    trendingMovies: trendingResponse?.results ?? []
+    movies: popularSeriesResponse?.results.splice(0, 10) ?? [],
+    redirectUrl: "localhost:3000"
   };
-  
-  useEffect(() => {
-    async function fetchTrending() {
-      const trendingResponse = await TrendingService();
-      setTrendingResponse(trendingResponse);
-    }
-    fetchTrending();
-  }, []);
 
   return (
     <>

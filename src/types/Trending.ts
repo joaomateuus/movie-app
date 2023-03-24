@@ -1,8 +1,4 @@
-export interface TrendingResponse {
-    results: Array<Trending>;
-}
-
-export interface Trending{
+export interface MovieModelBase {
     adult: boolean;    
 	backdrop_path: string;
 	id: number;
@@ -19,3 +15,7 @@ export interface Trending{
 	vote_average: number;
     vote_count: number;
 };
+
+export interface MovieDbApiResponse {
+    results: Array<MovieModelBase>;
+}
