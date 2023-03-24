@@ -1,16 +1,16 @@
 .slider {
   position: relative;
-  padding: 15px;
   max-width: 100%;
   margin: 0 auto;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 .slider-container {
   position: relative;
   overflow: hidden;
-  margin: 0 40px;
+  margin: 0 30px;
 }
 
 .slider-item {
@@ -18,12 +18,11 @@
   flex-flow: nowrap;
   width: 100%;
   gap: 15px;
-  transition: all 1s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .slider-item img {
-  width: 320px;
-  height: 170px;
+  height: 200px;
 }
 
 .arrow-left,
@@ -61,7 +60,7 @@
     flex-flow: nowrap;
     width: 50%;
     gap: 15px;
-    transition: all 0.2s ease-in-out;
+    transition: all 1s ease-in-out;
   }
   
   .slider-item img {
