@@ -39,7 +39,7 @@ export const Home = () => {
     title: "Popular Movies",
     settings: swiperSettings,
     movies: popularMoviesResponse?.results.splice(0, 9) ?? [],
-    redirectUrl: "localhost:3000"
+    redirectUrl: "/movies"
   };
 
   const SeriesSliderProps = {

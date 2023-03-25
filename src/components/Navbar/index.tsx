@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import user_icon from "../../assets/user_icon.png";
 import "./index.css";
@@ -17,7 +18,10 @@ export const NavBar = ({placeholder}: NavBarProps) => {
         <input placeholder={placeholder} className='h-12 rounded-md outline-none p-4' type="text" />
       </div> */}
       <ul className='flex items-center justify-between w-96 text-white' id='nav-links'>
-        <li>Movies</li>
+        <Link to={"/movies"}>
+          <li>Movies</li>
+        </Link>
+       
         <li>Series</li>
         <li>Watch List</li>
         <li>

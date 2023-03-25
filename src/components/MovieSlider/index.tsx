@@ -5,6 +5,7 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { Link } from "react-router-dom";
 
 interface MovieSliderProps {
     title: string;
@@ -16,10 +17,12 @@ interface MovieSliderProps {
 export const MovieSlider: React.FC<MovieSliderProps> = ({ title, movies, settings, redirectUrl}) => {
     return (
         <div className="flex-col items-center justify-center trending-movies ml-12 p-6">
-            <div className="flex items-center justify-between w-full p-4">
+            <div className="flex items-center justify-between w-full p-4" id="div-header">
                 <h1 className='text-2xl text-white mb-4'>{title}</h1>
                 {redirectUrl ? 
-                    <button className="h-8 w-32 bg-white rounded-md">Read More</button>
+                    <Link to={redirectUrl}>
+                        <button className="h-8 w-32 bg-white rounded-md">Read More</button>
+                    </Link>
                     : null
                 }
             </div>

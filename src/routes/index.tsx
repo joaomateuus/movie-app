@@ -1,4 +1,3 @@
-
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { Home } from '../pages/Home'
 import { Movies } from '../pages/Movies'
