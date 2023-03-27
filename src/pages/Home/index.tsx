@@ -3,13 +3,13 @@ import { Carrousel } from '../../components/Carrousel';
 import { MovieSlider } from '../../components/MovieSlider';
 import { swiperSettings } from '../../config/swiper';
 import { TrendingService, popularMoviesService, popularSeriesService } from '../../services/TrendindService';
-import { MovieDbApiResponse } from '../../types/Trending';
+import { MovieDbApiResponse, MovieModelBase } from '../../types/Trending';
 import './index.css';
 
 export const Home = () => {
-  const [trendingResponse, setTrendingResponse] = useState<MovieDbApiResponse>();
-  const [popularMoviesResponse, setpopularMoviesResponse] = useState<MovieDbApiResponse>();
-  const [popularSeriesResponse, setPopularSeriesResponse] = useState<MovieDbApiResponse>();
+  const [trendingResponse, setTrendingResponse] = useState([]);
+  const [popularMoviesResponse, setpopularMoviesResponse] = useState<Array<MovieModelBase>>([]);
+  const [popularSeriesResponse, setPopularSeriesResponse] = useState<Array<MovieModelBase>>([]);
   
   useEffect(() => {
     async function fetchTrending() {
@@ -32,20 +32,20 @@ export const Home = () => {
   const TrendingSliderProps = {
     title: "Trending",
     settings: swiperSettings,
-    movies: trendingResponse?.results ?? []
+    movies: trendingResponse ?? []
   };
 
   const MovieSliderProps = {
     title: "Popular Movies",
     settings: swiperSettings,
-    movies: popularMoviesResponse?.results.splice(0, 9) ?? [],
+    movies: popularMoviesResponse?.splice(0, 9) ?? [],
     redirectUrl: "/movies"
   };
 
   const SeriesSliderProps = {
     title: "Popular Series",
     settings: swiperSettings,
-    movies: popularSeriesResponse?.results.splice(0, 10) ?? [],
+    movies: popularSeriesResponse?.splice(0, 10) ?? [],
     redirectUrl: "localhost:3000"
   };
 
