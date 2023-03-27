@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const Api = axios.create(
     {
-        baseURL: "https://api.themoviedb.org"
+        baseURL: `${import.meta.env.VITE_REACT_BASE_URL}`
     }
 )
 
